@@ -199,7 +199,7 @@
     {{-- WARNA TERSEDIA --}}
     <div class="bg-white p-6 shadow-sm">
     <h3 class="font-bold text-sm uppercase tracking-wide border-b border-gray-100 pb-3 mb-4">
-        Warna Tersedia
+        Warna Tersedia 
     </h3>
 
     <div x-data="{
