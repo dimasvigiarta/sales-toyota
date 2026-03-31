@@ -12,7 +12,7 @@
 
 {{-- HERO BANNER --}}
 <section class="relative w-full overflow-hidden bg-gray-950"
-         style="min-height: 95vh;">
+         style="min-height: 45vh;">
 
   {{-- Background gambar pertama --}}
   <div class="absolute inset-0">
@@ -25,18 +25,18 @@
 
   {{-- Content --}}
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8
-              flex flex-col justify-end pb-20 pt-32 lg:pt-40"
-       style="min-height: 85vh;">
+              flex flex-col justify-end pb-8 pt-24 sm:pb-20 sm:pt-32 lg:pt-40"
+       style="min-height: 45vh;">
     <div class="max-w-2xl">
 
       {{-- Nama Mobil (Ukuran 3/5 dari asli) --}}
       <h1 class="font-black text-white uppercase leading-none tracking-tight
-                 text-2xl sm:text-3xl lg:text-4xl xl:text-5xl mb-4">
+                 text-2xl sm:text-5xl lg:text-6xl xl:text-7xl mb-3">
         {{ $car->nama_mobil }}
       </h1>
 
       {{-- Deskripsi --}}
-      <p class="text-white/60 text-sm sm:text-base leading-relaxed mb-8
+      <p class="text-white/60 text-xs sm:text-base leading-relaxed mb-4 sm:mb-8
                 max-w-lg font-light">
         {{ $car->deskripsi }}
       </p>
@@ -47,7 +47,7 @@
           <p class="text-white/40 text-[10px] uppercase tracking-[0.2em] mb-1">
             Harga OTR Mulai
           </p>
-          <p class="font-black text-2xl sm:text-3xl text-red-500">
+          <p class="font-black text-lg sm:text-3xl text-red-500">
             {{ $car->harga_format }}
           </p>
         </div>
@@ -690,22 +690,5 @@
   </div>
 </section>
 @endif
-
-{{-- STICKY CTA MOBILE --}}
-<div class="fixed bottom-0 inset-x-0 z-40 lg:hidden">
-  <div class="bg-white border-t border-gray-200 px-4 py-3 flex gap-3 shadow-lg">
-    <button class="flex-1 py-3 border-2 border-red-600 text-red-600
-                   font-bold text-xs uppercase tracking-[0.15em]
-                   active:scale-95 transition-transform">
-      Test Drive
-    </button>
-    <button onclick="document.querySelector('[x-data*=fetchContacts]').__x.$data.fetchContacts()"
-            class="flex-1 py-3 bg-red-600 text-white font-bold
-                   text-xs uppercase tracking-[0.15em]
-                   active:scale-95 transition-transform">
-      Tanya Promo
-    </button>
-  </div>
-</div>
 
 @endsection

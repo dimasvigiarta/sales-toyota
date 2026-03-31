@@ -98,43 +98,7 @@ $slides = [
 
   </div>
 
-  {{-- TEXT & KONTEN --}}
-  <div class="absolute inset-0 z-10 pointer-events-none">
-    {{-- pb-32 sm:pb-28 ditambahkan di sini agar ada jarak aman ke dots --}}
-    <div class="h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center pt-20 pb-24 sm:pt-20 sm:pb-20">
-      
-      <div class="max-w-xl pointer-events-auto">
-        <div class="flex items-center gap-2 mb-4">
-          <span class="text-red-600 font-bold text-[10px] uppercase tracking-[0.3em]">
-            Dealer Resmi Toyota
-          </span>
-        </div>
-        
-        <p class="text-white/80 text-sm sm:text-base font-medium tracking-[0.15em] mb-1">
-          RAMA TOYOTA JEMBER
-        </p>
-        
-        {{-- UKURAN TEKS DIPERKECIL (menjadi text-3xl sm:text-4xl lg:text-5xl) --}}
-        <h1 class="font-black text-white uppercase leading-none tracking-tight text-2xl sm:text-5xl lg:text-6xl xl:text-7xl mb-4">
-          MOVE YOUR WORLD
-        </h1>
-        
-        <p class="text-white/60 text-sm leading-relaxed mb-8 max-w-md font-light">
-          Wujudkan impian memiliki mobil Toyota baru dengan pelayanan terbaik. Dapatkan promo eksklusif, DP ringan, dan kemudahan proses hanya di dealer resmi kami.
-        </p>
-        
-        <div class="flex flex-wrap gap-3">
-          <a href="{{ route('cars.index') }}" class="bg-red-600 text-white font-bold uppercase text-xs tracking-[0.15em] px-6 py-3 hover:bg-red-700 transition-colors shadow-lg shadow-red-600/30">
-            Lihat Model
-          </a>
-          <a href="{{ route('promos.index') }}" class="border border-white/30 text-white font-bold uppercase text-xs tracking-[0.15em] px-6 py-3 hover:border-white/60 hover:bg-white/10 transition-all backdrop-blur-sm">
-            Promo Sekarang
-          </a>
-        </div>
-      </div>
-
-    </div>
-  </div>
+  --}}
 
   {{-- PANAH NAVIGASI --}}
   <button @click="prev()" class="absolute left-4 lg:left-6 top-1/2 -translate-y-1/2 z-20 w-9 h-9 bg-white/10 backdrop-blur-sm border border-white/15 text-white hover:bg-white/20 transition-all duration-200 flex items-center justify-center pointer-events-auto">
