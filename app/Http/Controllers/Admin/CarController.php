@@ -183,7 +183,10 @@ class CarController extends Controller
 
     public function uploadImages(Request $request, Car $car)
     {
-        Log::info('warna_nama received: ' . $request->input('warna_nama', 'NULL'));
+        Log::info('Upload data:', [
+            'warna_nama'  => $request->input('warna_nama'),
+            'tipe_gambar' => $request->input('tipe_gambar'),
+        ]);
 
         $request->validate([
             'images.*'    => 'required|image|max:2048',
@@ -192,6 +195,9 @@ class CarController extends Controller
 
         $uploaded   = [];
         $warnaNama  = $request->input('warna_nama') ?: null;
+
+        Log::info('warnaNama setelah proses: ' . ($warnaNama ?? 'NULL'));
+
         $lastUrutan = $car->images()
                         ->where('tipe_gambar', $request->tipe_gambar)
                         ->when($warnaNama, fn($q) => $q->where('warna_nama', $warnaNama))
@@ -206,6 +212,12 @@ class CarController extends Controller
                 'urutan'      => $lastUrutan,
                 'warna_nama'  => $warnaNama,
             ]);
+
+            Log::info('Gambar disimpan:', [
+                'id'         => $img->id,
+                'warna_nama' => $img->warna_nama,
+            ]);
+
             $uploaded[] = ['id' => $img->id, 'url' => asset('storage/' . $path)];
         }
 

@@ -574,67 +574,73 @@
 @endif
 
 {{-- GALERI --}}
-@if($car->galleryImages->isNotEmpty())
+@if($car->galleryImagesNoWarna->isNotEmpty())
 <section id="galeri" class="bg-white py-16 border-t border-gray-100">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-12">
       <p class="text-red-600 text-xs font-semibold uppercase tracking-[0.2em] mb-2">
-        Lihat Lebih Dekat
+        Penyerahan Unit Ke Pelanggan
       </p>
       <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">Galeri</h2>
     </div>
 
     <div x-data="{
-           active: 0,
-           images: {{ json_encode($car->galleryImages->pluck('url')) }}
-         }">
-      {{-- Gambar utama --}}
-      <div class="relative overflow-hidden bg-gray-100 mb-4"
-           style="aspect-ratio: 16/9;">
-        <img :src="images[active]"
-             alt="{{ $car->nama_mobil }}"
-             class="w-full h-full object-cover transition-all duration-300">
+           images: {{ json_encode($car->galleryImagesNoWarna->pluck('url')) }},
+           current: 0,
+           timer: null,
+           next() { this.current = (this.current + 1) % Math.ceil(this.images.length / 2) },
+           prev() { this.current = (this.current - 1 + Math.ceil(this.images.length / 2)) % Math.ceil(this.images.length / 2) },
+           startTimer() { this.timer = setInterval(() => this.next(), 4000) },
+           stopTimer()  { clearInterval(this.timer) }
+         }"
+         x-init="startTimer()"
+         @mouseenter="stopTimer()"
+         @mouseleave="startTimer()">
 
-        {{-- Prev/Next --}}
-        <button @click="active = (active - 1 + images.length) % images.length"
-                class="absolute left-4 top-1/2 -translate-y-1/2
-                       w-9 h-9 bg-white/80 backdrop-blur-sm border border-gray-200
-                       flex items-center justify-center
-                       hover:bg-white transition-colors shadow-sm">
-          <svg class="w-3.5 h-3.5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-          </svg>
-        </button>
-        <button @click="active = (active + 1) % images.length"
-                class="absolute right-4 top-1/2 -translate-y-1/2
-                       w-9 h-9 bg-white/80 backdrop-blur-sm border border-gray-200
-                       flex items-center justify-center
-                       hover:bg-white transition-colors shadow-sm">
-          <svg class="w-3.5 h-3.5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-          </svg>
-        </button>
+      {{-- Slider --}}
+      <div class="overflow-hidden">
+        <div class="flex transition-transform duration-700 ease-in-out"
+             :style="'transform: translateX(-' + (current * 100) + '%)'">
 
-        {{-- Counter --}}
-        <div class="absolute bottom-4 right-4 bg-black/50 text-white
-                    text-xs font-semibold px-3 py-1.5">
-          <span x-text="active + 1"></span>/<span x-text="images.length"></span>
+          @php
+            $chunks = $car->galleryImagesNoWarna->chunk(2);
+          @endphp
+
+          @foreach($chunks as $chunk)
+          <div class="flex gap-4 flex-shrink-0 w-full">
+            @foreach($chunk as $img)
+            <div class="flex-1 overflow-hidden bg-gray-100 rounded-sm"
+                 style="aspect-ratio: 4/3;">
+              <img src="{{ $img->url }}"
+                   alt="{{ $car->nama_mobil }}"
+                   class="w-full h-full object-cover hover:scale-105
+                          transition-transform duration-500">
+            </div>
+            @endforeach
+            {{-- Jika chunk ganjil, tambah placeholder --}}
+            @if($chunk->count() === 1)
+            <div class="flex-1"></div>
+            @endif
+          </div>
+          @endforeach
+
         </div>
       </div>
 
-      {{-- Thumbnail strip --}}
-      <div class="flex gap-2 overflow-x-auto scrollbar-hide pb-1">
-        <template x-for="(img, i) in images" :key="i">
-          <button @click="active = i"
-                  class="flex-shrink-0 w-20 h-14 overflow-hidden border-2
-                         transition-all duration-200"
-                  :class="active === i
-                    ? 'border-red-600'
-                    : 'border-transparent hover:border-gray-300'">
-            <img :src="img" alt="" class="w-full h-full object-cover">
-          </button>
-        </template>
+      {{-- Dots --}}
+      @if($chunks->count() > 1)
+      <div class="flex justify-center gap-2 mt-6">
+        @foreach($chunks as $i => $chunk)
+        <button @click="current = {{ $i }}"
+                class="transition-all duration-300 rounded-sm"
+                :class="{{ $i }} === current
+                  ? 'w-6 h-1.5 bg-red-600'
+                  : 'w-1.5 h-1.5 rounded-full bg-gray-300 hover:bg-gray-500'">
+        </button>
+        @endforeach
       </div>
+      @endif
+
     </div>
   </div>
 </section>

@@ -19,7 +19,7 @@ $slides = [
 @endphp
 
 {{-- HERO SLIDER --}}
-<section class="relative h-screen min-h-[600px] max-h-[900px] overflow-hidden bg-slate-900"
+<section class="relative overflow-hidden" style="height: 60vw; min-height: 420px; max-height: 900px;"
          x-data="{
            slides: @js($slides),
            current: 0,
@@ -101,7 +101,7 @@ $slides = [
   {{-- TEXT & KONTEN --}}
   <div class="absolute inset-0 z-10 pointer-events-none">
     {{-- pb-32 sm:pb-28 ditambahkan di sini agar ada jarak aman ke dots --}}
-    <div class="h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-end sm:justify-center pb-32 sm:pt-20 sm:pb-28">
+    <div class="h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center pt-20 pb-24 sm:pt-20 sm:pb-20">
       
       <div class="max-w-xl pointer-events-auto">
         <div class="flex items-center gap-2 mb-4">
@@ -115,7 +115,7 @@ $slides = [
         </p>
         
         {{-- UKURAN TEKS DIPERKECIL (menjadi text-3xl sm:text-4xl lg:text-5xl) --}}
-        <h1 class="font-black text-white uppercase leading-none text-3xl sm:text-4xl lg:text-5xl tracking-tight mb-5">
+        <h1 class="font-black text-white uppercase leading-none tracking-tight text-2xl sm:text-5xl lg:text-6xl xl:text-7xl mb-4">
           MOVE YOUR WORLD
         </h1>
         
@@ -190,7 +190,7 @@ $slides = [
         @foreach($tabs as $t)
         <button @click="tab = '{{ $t }}'"
                 :class="tab === '{{ $t }}'
-                  ? 'border-b-2 border-red-600 text-red-600 font-bold'
+                  ? 'text-red-600 font-bold'
                   : 'text-gray-500 hover:text-gray-800'"
                 class="flex-shrink-0 px-6 py-3 text-sm font-semibold
                        uppercase tracking-wide transition-colors duration-200">
@@ -420,6 +420,55 @@ $slides = [
 @endif
 
 
+{{-- WHY US --}}
+<section id="tentang" class="bg-gray-50 py-16 border-t border-gray-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <p class="text-red-600 text-xs font-semibold uppercase tracking-[0.2em] mb-3">
+          Mengapa Rama Toyota
+        </p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight mb-6">
+          Pengalaman Terbaik<br>Bersama Toyota
+        </h2>
+        <p class="text-gray-500 leading-relaxed mb-8 text-sm font-light">
+          Hadir sejak 2010, kami berkomitmen memberikan pengalaman membeli
+          mobil yang mudah, transparan, dan menyenangkan bagi masyarakat Jember.
+        </p>
+        <a href="{{ route('tentang') }}"
+           class="inline-flex items-center gap-2 border border-gray-300 text-gray-700
+                  font-semibold text-xs uppercase tracking-wider px-6 py-3
+                  hover:border-red-600 hover:text-red-600 transition-all duration-200 group">
+          Tentang Kami
+          <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"
+               fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3">
+        @foreach([
+          ['Dealer Terpercaya', 'Dealer resmi Toyota sejak 2010 dengan ribuan pelanggan puas'],
+          ['Harga Transparan',  'Harga OTR jelas dan kompetitif tanpa biaya tersembunyi'],
+          ['Test Drive Gratis', 'Coba kendaraan impian Anda sebelum memutuskan membeli'],
+          ['After Sales Prima', 'Bengkel resmi Toyota dengan teknisi bersertifikat'],
+        ] as $item)
+        <div class="bg-white border border-gray-100 p-5
+                    hover:border-red-200 hover:shadow-sm
+                    transition-all duration-300 group">
+          <div class="w-5 h-0.5 bg-red-600 mb-4
+                      group-hover:w-10 transition-all duration-300"></div>
+          <h4 class="font-bold text-sm text-gray-900 mb-2">{{ $item[0] }}</h4>
+          <p class="text-gray-400 text-xs leading-relaxed">{{ $item[1] }}</p>
+        </div>
+        @endforeach
+      </div>
+    </div>
+  </div>
+</section>
+
+
 {{-- VIDEO CINEMATIC SECTION --}}
 <section class="bg-gray-900 py-16 relative overflow-hidden">
   {{-- Background pattern tipis (opsional) --}}
@@ -499,6 +548,71 @@ $slides = [
 </section>
 
 
+{{-- FAQ SECTION (SEO BOOSTER) --}}
+<section class="bg-white py-20 border-t border-gray-100">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14">
+      <h2 class="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight mb-4">Pertanyaan yang Sering Diajukan</h2>
+      <p class="text-gray-500">Temukan jawaban untuk pertanyaan umum seputar pembelian mobil Toyota di dealer kami.</p>
+    </div>
+
+    <div class="space-y-4" x-data="{ activeAccordion: null }">
+      
+      @php
+        $faqs = [
+          [
+            'q' => 'Apa saja syarat untuk pengajuan kredit mobil Toyota?',
+            'a' => 'Syarat umum untuk perorangan meliputi: KTP Suami & Istri, Kartu Keluarga, NPWP, PBB/Bukti Kepemilikan Rumah, Slip Gaji/Buku Tabungan 3 bulan terakhir. Tim sales kami akan membantu proses pendataan hingga disetujui (*Approved*).'
+          ],
+          [
+            'q' => 'Apakah melayani pembelian dari luar kota/daerah?',
+            'a' => 'Tentu! Kami melayani pembelian mobil Toyota untuk wilayah kota ini dan sekitarnya, serta siap membantu proses pengiriman unit kendaraan langsung ke garasi rumah Anda dengan aman.'
+          ],
+          [
+            'q' => 'Apakah dealer ini melayani tukar tambah (Trade-In)?',
+            'a' => 'Ya, kami melayani tukar tambah mobil lama Anda (segala merek) dengan mobil Toyota terbaru. Kami akan memberikan estimasi harga mobil lama Anda dengan nilai terbaik dan proses yang transparan.'
+          ],
+          [
+            'q' => 'Berapa lama proses pembuatan STNK dan BPKB?',
+            'a' => 'Untuk unit *Ready Stock*, proses STNK umumnya memakan waktu 14 hari kerja setelah pelunasan/akad kredit. Sedangkan BPKB untuk pembelian tunai selesai dalam 2-3 bulan, dan untuk kredit akan disimpan oleh pihak Leasing.'
+          ]
+        ];
+      @endphp
+
+      @foreach($faqs as $index => $faq)
+      <div class="bg-gray-50 border border-gray-100 rounded-xl overflow-hidden transition-all duration-300"
+           :class="activeAccordion === {{ $index }} ? 'shadow-md border-red-100' : 'hover:border-gray-200'">
+        <button 
+          @click="activeAccordion = activeAccordion === {{ $index }} ? null : {{ $index }}" 
+          class="w-full flex items-center justify-between p-6 text-left focus:outline-none">
+          <span class="font-bold text-gray-900 text-sm sm:text-base pr-4" 
+                :class="activeAccordion === {{ $index }} ? 'text-red-600' : ''">
+            {{ $faq['q'] }}
+          </span>
+          <div class="flex-shrink-0 w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center transition-colors"
+               :class="activeAccordion === {{ $index }} ? 'border-red-600 bg-red-50 text-red-600' : 'text-gray-400'">
+            <svg class="w-5 h-5 transition-transform duration-300" 
+                 :class="activeAccordion === {{ $index }} ? 'rotate-180' : ''" 
+                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+        </button>
+        
+        <div x-show="activeAccordion === {{ $index }}" 
+             x-collapse 
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:leave="transition ease-in duration-200"
+             class="px-6 pb-6 text-gray-600 text-sm leading-relaxed border-t border-gray-100 pt-4">
+          {{ $faq['a'] }}
+        </div>
+      </div>
+      @endforeach
+
+    </div>
+  </div>
+</section>
+
 {{-- TESTIMONI --}}
 <section class="bg-white py-16 border-t border-gray-100">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -566,119 +680,6 @@ $slides = [
           <p class="text-[10px] text-gray-400 mt-0.5">Berdasarkan 500+ ulasan</p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-{{-- WHY US --}}
-<section id="tentang" class="bg-gray-50 py-16 border-t border-gray-100">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
-      <div>
-        <p class="text-red-600 text-xs font-semibold uppercase tracking-[0.2em] mb-3">
-          Mengapa Rama Toyota
-        </p>
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight mb-6">
-          Pengalaman Terbaik<br>Bersama Toyota
-        </h2>
-        <p class="text-gray-500 leading-relaxed mb-8 text-sm font-light">
-          Hadir sejak 2010, kami berkomitmen memberikan pengalaman membeli
-          mobil yang mudah, transparan, dan menyenangkan bagi masyarakat Jember.
-        </p>
-        <a href="{{ route('tentang') }}"
-           class="inline-flex items-center gap-2 border border-gray-300 text-gray-700
-                  font-semibold text-xs uppercase tracking-wider px-6 py-3
-                  hover:border-red-600 hover:text-red-600 transition-all duration-200 group">
-          Tentang Kami
-          <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"
-               fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-          </svg>
-        </a>
-      </div>
-
-      <div class="grid grid-cols-2 gap-3">
-        @foreach([
-          ['Dealer Terpercaya', 'Dealer resmi Toyota sejak 2010 dengan ribuan pelanggan puas'],
-          ['Harga Transparan',  'Harga OTR jelas dan kompetitif tanpa biaya tersembunyi'],
-          ['Test Drive Gratis', 'Coba kendaraan impian Anda sebelum memutuskan membeli'],
-          ['After Sales Prima', 'Bengkel resmi Toyota dengan teknisi bersertifikat'],
-        ] as $item)
-        <div class="bg-white border border-gray-100 p-5
-                    hover:border-red-200 hover:shadow-sm
-                    transition-all duration-300 group">
-          <div class="w-5 h-0.5 bg-red-600 mb-4
-                      group-hover:w-10 transition-all duration-300"></div>
-          <h4 class="font-bold text-sm text-gray-900 mb-2">{{ $item[0] }}</h4>
-          <p class="text-gray-400 text-xs leading-relaxed">{{ $item[1] }}</p>
-        </div>
-        @endforeach
-      </div>
-    </div>
-  </div>
-</section>
-
-{{-- FAQ SECTION (SEO BOOSTER) --}}
-<section class="bg-white py-20 border-t border-gray-100">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-14">
-      <h2 class="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight mb-4">Pertanyaan yang Sering Diajukan</h2>
-      <p class="text-gray-500">Temukan jawaban untuk pertanyaan umum seputar pembelian mobil Toyota di dealer kami.</p>
-    </div>
-
-    <div class="space-y-4" x-data="{ activeAccordion: null }">
-      
-      @php
-        $faqs = [
-          [
-            'q' => 'Apa saja syarat untuk pengajuan kredit mobil Toyota?',
-            'a' => 'Syarat umum untuk perorangan meliputi: KTP Suami & Istri, Kartu Keluarga, NPWP, PBB/Bukti Kepemilikan Rumah, Slip Gaji/Buku Tabungan 3 bulan terakhir. Tim sales kami akan membantu proses pendataan hingga disetujui (*Approved*).'
-          ],
-          [
-            'q' => 'Apakah melayani pembelian dari luar kota/daerah?',
-            'a' => 'Tentu! Kami melayani pembelian mobil Toyota untuk wilayah kota ini dan sekitarnya, serta siap membantu proses pengiriman unit kendaraan langsung ke garasi rumah Anda dengan aman.'
-          ],
-          [
-            'q' => 'Apakah dealer ini melayani tukar tambah (Trade-In)?',
-            'a' => 'Ya, kami melayani tukar tambah mobil lama Anda (segala merek) dengan mobil Toyota terbaru. Kami akan memberikan estimasi harga mobil lama Anda dengan nilai terbaik dan proses yang transparan.'
-          ],
-          [
-            'q' => 'Berapa lama proses pembuatan STNK dan BPKB?',
-            'a' => 'Untuk unit *Ready Stock*, proses STNK umumnya memakan waktu 14 hari kerja setelah pelunasan/akad kredit. Sedangkan BPKB untuk pembelian tunai selesai dalam 2-3 bulan, dan untuk kredit akan disimpan oleh pihak Leasing.'
-          ]
-        ];
-      @endphp
-
-      @foreach($faqs as $index => $faq)
-      <div class="bg-gray-50 border border-gray-100 rounded-xl overflow-hidden transition-all duration-300"
-           :class="activeAccordion === {{ $index }} ? 'shadow-md border-red-100' : 'hover:border-gray-200'">
-        <button 
-          @click="activeAccordion = activeAccordion === {{ $index }} ? null : {{ $index }}" 
-          class="w-full flex items-center justify-between p-6 text-left focus:outline-none">
-          <span class="font-bold text-gray-900 text-sm sm:text-base pr-4" 
-                :class="activeAccordion === {{ $index }} ? 'text-red-600' : ''">
-            {{ $faq['q'] }}
-          </span>
-          <div class="flex-shrink-0 w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center transition-colors"
-               :class="activeAccordion === {{ $index }} ? 'border-red-600 bg-red-50 text-red-600' : 'text-gray-400'">
-            <svg class="w-5 h-5 transition-transform duration-300" 
-                 :class="activeAccordion === {{ $index }} ? 'rotate-180' : ''" 
-                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </div>
-        </button>
-        
-        <div x-show="activeAccordion === {{ $index }}" 
-             x-collapse 
-             x-transition:enter="transition ease-out duration-300"
-             x-transition:leave="transition ease-in duration-200"
-             class="px-6 pb-6 text-gray-600 text-sm leading-relaxed border-t border-gray-100 pt-4">
-          {{ $faq['a'] }}
-        </div>
-      </div>
-      @endforeach
-
     </div>
   </div>
 </section>

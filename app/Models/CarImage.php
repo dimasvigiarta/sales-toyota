@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class CarImage extends Model
 {
     protected $fillable = [
-        'car_id', 'path_gambar', 'tipe_gambar', 'urutan'
+        'car_id', 'path_gambar', 'tipe_gambar', 'urutan', 'warna_nama'
     ];
 
     public function car(): BelongsTo
