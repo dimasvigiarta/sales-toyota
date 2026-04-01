@@ -19,7 +19,7 @@ $slides = [
 @endphp
 
 {{-- HERO SLIDER --}}
-<section class="relative overflow-hidden" style="height: 60vw; min-height: 420px; max-height: 900px;"
+<section class="relative overflow-hidden" style="height: 50vw; min-height: 420px; max-height: 600px;"
          x-data="{
            slides: @js($slides),
            current: 0,
