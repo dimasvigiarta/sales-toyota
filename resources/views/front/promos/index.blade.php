@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Promo Toyota – Rama Toyota Jember')
+@section('title', 'Promo Toyota – Dimas Toyota Jember')
 
 @section('content')
 <div class="pt-16 lg:pt-20">
@@ -38,7 +38,7 @@
         Promo Spesial
       </h1>
       <p class="text-slate-300 max-w-2xl mx-auto text-sm md:text-base font-light leading-relaxed">
-        Wujudkan mobil Toyota impian Anda bulan ini. Temukan berbagai kemudahan, DP ringan, dan bonus aksesoris khusus untuk pelanggan setia Rama Toyota.
+        Wujudkan mobil Toyota impian Anda bulan ini. Temukan berbagai kemudahan, DP ringan, dan bonus aksesoris khusus untuk pelanggan setia Dimas Toyota.
       </p>
     </div>
   </div>
@@ -50,7 +50,7 @@
     <div class="whitespace-nowrap flex w-max animate-marquee items-center text-slate-300 text-xs sm:text-sm font-semibold tracking-widest uppercase">
       
       {{-- KELOMPOK TEKS 1 --}}
-      <span class="mx-8 text-white font-bold tracking-[0.25em]">Rama Toyota Jember</span>
+      <span class="mx-8 text-white font-bold tracking-[0.25em]">Dimas Toyota Jember</span>
       <span class="w-2 h-2 rounded-full bg-red-600 flex-shrink-0 shadow-[0_0_8px_rgba(220,38,38,0.8)]"></span>
       <span class="mx-8 hover:text-white transition-colors cursor-default">Bunga 0% Tenor 1 Tahun</span>
       <span class="w-2 h-2 rounded-full bg-red-600 flex-shrink-0 shadow-[0_0_8px_rgba(220,38,38,0.8)]"></span>
@@ -62,7 +62,7 @@
       <span class="w-2 h-2 rounded-full bg-red-600 flex-shrink-0 shadow-[0_0_8px_rgba(220,38,38,0.8)]"></span>
 
       {{-- KELOMPOK TEKS 2 (Duplikat untuk Looping Mulus) --}}
-      <span class="mx-8 text-white font-bold tracking-[0.25em]">Rama Toyota Jember</span>
+      <span class="mx-8 text-white font-bold tracking-[0.25em]">Dimas Toyota Jember</span>
       <span class="w-2 h-2 rounded-full bg-red-600 flex-shrink-0 shadow-[0_0_8px_rgba(220,38,38,0.8)]"></span>
       <span class="mx-8 hover:text-white transition-colors cursor-default">Bunga 0% Tenor 1 Tahun</span>
       <span class="w-2 h-2 rounded-full bg-red-600 flex-shrink-0 shadow-[0_0_8px_rgba(220,38,38,0.8)]"></span>
@@ -89,7 +89,7 @@
           </svg>
         </div>
         <h3 class="text-xl font-bold text-slate-900 mb-2">Belum Ada Promo Saat Ini</h3>
-        <p class="text-slate-500">Nantikan penawaran eksklusif dan menarik dari Rama Toyota selanjutnya.</p>
+        <p class="text-slate-500">Nantikan penawaran eksklusif dan menarik dari Dimas Toyota selanjutnya.</p>
       </div>
       @else
       

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Admin — Rama Toyota Jember</title>
+  <title>Login Admin — Dimas Toyota</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -23,7 +23,7 @@
         <div class="inline-flex items-center justify-center w-14 h-14 bg-red-600 rounded-2xl mb-4 shadow-lg shadow-red-600/20">
           <span class="text-white font-bold text-2xl">T</span>
         </div>
-        <h1 class="font-bold text-2xl text-slate-100 tracking-tight">Rama Toyota</h1>
+        <h1 class="font-bold text-2xl text-slate-100 tracking-tight">Dimas Toyota</h1>
         <p class="text-slate-400 text-sm mt-1 font-medium">Panel Admin Jember</p>
       </div>
 

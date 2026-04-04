@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 class Promo extends Model
 {
     protected $fillable = [
-        'judul_promo', 'slug', 'gambar_banner',
+        'judul_promo', 'slug', 'gambar_banner', 'file_brosur',
         'konten', 'tanggal_berakhir', 'is_active',
     ];
 

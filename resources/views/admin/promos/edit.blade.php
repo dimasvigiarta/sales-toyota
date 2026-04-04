@@ -67,6 +67,33 @@
                         file:bg-gray-900 file:text-white
                         hover:file:bg-gray-700 cursor-pointer">
           <p class="text-xs text-gray-400 mt-1">Maksimal 3MB. Kosongkan jika tidak ingin mengganti.</p>
+          {{-- File Brosur --}}
+          <div class="mt-4">
+            <label class="block text-xs font-semibold uppercase tracking-wide text-gray-500 mb-1">
+              {{ $promo->file_brosur ? 'Ganti File Brosur (PDF)' : 'Upload File Brosur (PDF)' }}
+            </label>
+            @if($promo->file_brosur)
+            <div class="flex items-center gap-3 mb-2 p-3 bg-gray-50 border border-gray-200">
+              <svg class="w-5 h-5 text-red-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+              </svg>
+              <span class="text-xs text-gray-600 flex-1 truncate">Brosur sudah diupload</span>
+              <a href="{{ asset('storage/' . $promo->file_brosur) }}"
+                target="_blank"
+                class="text-xs text-red-600 hover:underline font-semibold">
+                Lihat
+              </a>
+            </div>
+            @endif
+            <input type="file" name="file_brosur" accept=".pdf,.jpg,.jpeg,.png"
+                  class="w-full text-sm text-gray-500
+                          file:mr-4 file:py-2 file:px-4 file:border-0
+                          file:text-xs file:font-semibold file:uppercase
+                          file:bg-gray-900 file:text-white
+                          hover:file:bg-gray-700 cursor-pointer">
+            <p class="text-xs text-gray-400 mt-1">Format: PDF, JPG, PNG. Maksimal 5MB. Kosongkan jika tidak ingin mengubah.</p>
+          </div>
         </div>
 
         <div>
@@ -79,7 +106,6 @@
           <p class="text-xs text-gray-400 mt-1">Mendukung tag HTML dasar.</p>
         </div>
       </div>
-
     </div>
 
     {{-- SIDEBAR --}}

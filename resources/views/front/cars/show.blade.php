@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $car->nama_mobil . ' – Rama Toyota Jember')
+@section('title', $car->nama_mobil . ' – Dimas Toyota Jember')
 
 @php
   $specs      = $car->spesifikasi ?? [];

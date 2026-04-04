@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 {{-- Judul yang lebih disukai Google (memasukkan kata Promo & Tahun) --}}
-@section('title', 'Promo Toyota Jember & Harga OTR Terbaru 2026 | Rama Toyota')
+@section('title', 'Promo Toyota Jember & Harga OTR Terbaru 2026 | Dimas Toyota')
 
 {{-- Tambahkan baris ini untuk mendeskripsikan isi beranda di hasil pencarian Google --}}
-@section('meta_desc', 'Dapatkan promo diskon DP ringan, cicilan mudah, dan harga OTR termurah untuk Avanza, Veloz, Raize di Jember. Hubungi dealer resmi Rama Toyota sekarang!')
+@section('meta_desc', 'Dapatkan promo diskon DP ringan, cicilan mudah, dan harga OTR termurah untuk Avanza, Veloz, Raize di Jember. Hubungi dealer resmi Dimas Toyota sekarang!')
 
 @section('content')
 
@@ -13,7 +13,7 @@
 $slides = [
   ['img' => 'hero1.png', 'alt' => 'Promo Toyota Jember Terbaru 2026'],
   ['img' => 'hero2.jpg', 'alt' => 'Kredit Mobil Toyota DP Ringan Jember'],
-  ['img' => 'hero3.jpg', 'alt' => 'Dealer Resmi Rama Toyota Jember'],
+  ['img' => 'hero3.jpg', 'alt' => 'Dealer Resmi Dimas Toyota Jember'],
   ['img' => 'hero4.png', 'alt' => 'Harga OTR Toyota Avanza Veloz Jember'],
 ];
 @endphp
@@ -189,7 +189,7 @@ $slides = [
             <div class="relative bg-gray-50 overflow-hidden" style="aspect-ratio: 16/10">
               <img src="{{ $car->thumbnail }}"
                   {{-- UPDATE BAGIAN ALT INI: Tambahkan kata kunci penting di sekitar nama mobil --}}
-                  alt="Promo Harga OTR {{ $car->nama_mobil }} Jember Terbaru 2026 - Dealer Rama Toyota"
+                  alt="Promo Harga OTR {{ $car->nama_mobil }} Jember Terbaru 2026 - Dealer Dimas Toyota"
                   class="w-full h-full object-cover
                           group-hover:scale-105 transition-transform duration-500">
               
@@ -390,7 +390,7 @@ $slides = [
     <div class="grid lg:grid-cols-2 gap-12 items-center">
       <div>
         <p class="text-red-600 text-xs font-semibold uppercase tracking-[0.2em] mb-3">
-          Mengapa Rama Toyota
+          Mengapa Dimas Toyota
         </p>
         <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight mb-6">
           Pengalaman Terbaik<br>Bersama Toyota
@@ -592,7 +592,7 @@ $slides = [
         ['nama' => 'Hendra S.',  'kota' => 'Jember Kota',       'mobil' => 'Innova',   'rating' => 5, 'pesan' => 'Pelayanan sangat memuaskan! Proses kredit cepat, dalam 3 hari mobil sudah bisa dibawa pulang.'],
         ['nama' => 'Ratna W.',   'kota' => 'Ambulu, Jember',    'mobil' => 'Hilux',     'rating' => 5, 'pesan' => 'Sudah 2 kali beli mobil di sini. Harga transparan, tidak ada biaya tersembunyi sama sekali.'],
         ['nama' => 'Doni P.',    'kota' => 'Kaliwates, Jember', 'mobil' => 'Fortuner Legender',    'rating' => 5, 'pesan' => 'Setelah test drive langsung jatuh cinta. Prosesnya mudah dan salesnya tidak memaksa sama sekali.'],
-        ['nama' => 'Agus M.',    'kota' => 'Bondowoso',         'mobil' => 'Fortuner GR', 'rating' => 5, 'pesan' => 'Walaupun dari Bondowoso, tetap pilih Rama Toyota Jember karena pelayanannya jauh lebih baik.'],
+        ['nama' => 'Agus M.',    'kota' => 'Bondowoso',         'mobil' => 'Fortuner GR', 'rating' => 5, 'pesan' => 'Walaupun dari Bondowoso, tetap pilih Dimas Toyota Jember karena pelayanannya jauh lebih baik.'],
         ['nama' => 'Sinta L.',   'kota' => 'Sumbersari, Jember','mobil' => 'Veloz',    'rating' => 5, 'pesan' => 'Salesnya bantu pilihkan mobil sesuai budget keluarga. After sales juga bagus dan mudah.'],
         ['nama' => 'Rizky F.',   'kota' => 'Patrang, Jember',   'mobil' => 'Calya',    'rating' => 5, 'pesan' => 'Beli untuk usaha travel. Harga oke, DP ringan, dan mobil langsung ready. Sangat profesional!'],
       ] as $t)

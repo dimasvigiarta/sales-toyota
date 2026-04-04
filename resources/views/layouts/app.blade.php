@@ -7,8 +7,8 @@
 
   {{-- SEO Meta Tags yang Dioptimalkan --}}
   <title>@yield('title', 'Dealer Resmi Toyota Jember | Promo & Harga OTR Terbaru 2026')</title>
-  <meta name="description" content="@yield('meta_desc', 'Dapatkan penawaran harga OTR termurah, promo diskon DP ringan, dan cicilan mudah untuk semua tipe mobil Toyota di Jember. Hubungi sales Rama Toyota sekarang!')">
-  <meta name="keywords" content="toyota jember, promo toyota jember, harga mobil toyota jember, dealer resmi rama toyota jember, sales toyota jember, kredit toyota jember">
+  <meta name="description" content="@yield('meta_desc', 'Dapatkan penawaran harga OTR termurah, promo diskon DP ringan, dan cicilan mudah untuk semua tipe mobil Toyota di Jember. Hubungi sales Dimas Toyota sekarang!')">
+  <meta name="keywords" content="toyota jember, promo toyota jember, harga mobil toyota jember, dealer resmi Dimas toyota jember, sales toyota jember, kredit toyota jember">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -44,7 +44,7 @@
             <div class="leading-none">
             <p class="font-black text-sm uppercase tracking-[0.15em] transition-colors"
                 :class="scrolled ? 'text-gray-900' : 'text-white'">
-                Rama Toyota
+                Dimas Toyota
             </p>
             <p class="text-[9px] uppercase tracking-[0.3em] mt-0.5 transition-colors"
                 :class="scrolled ? 'text-gray-400' : 'text-white/50'">
@@ -158,7 +158,7 @@
             />
         
         <div>
-            <p class="font-black text-sm uppercase tracking-[0.15em] text-white">Rama Toyota</p>
+            <p class="font-black text-sm uppercase tracking-[0.15em] text-white">Dimas Toyota</p>
             <p class="text-[10px] uppercase tracking-[0.2em] text-gray-500 mt-0.5">Jember</p>
         </div>
         </div>
@@ -262,9 +262,9 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
             </svg>
-            <a href="mailto:info@ramatoyotajember.com"
+            <a href="mailto:info@Dimastoyotajember.com"
                class="text-gray-400 text-sm hover:text-white transition-colors">
-              info@ramatoyotajember.com
+              info@Dimastoyotajember.com
             </a>
           </li>
         </ul>
@@ -303,7 +303,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
       <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
         <p class="text-gray-600 text-xs">
-          &copy; {{ date('Y') }} Rama Toyota Jember. All rights reserved.
+          &copy; {{ date('Y') }} Dimas Toyota Jember. All rights reserved.
         </p>
         <div class="flex items-center gap-4">
           <a href="#" class="text-gray-600 text-xs hover:text-gray-400 transition-colors">

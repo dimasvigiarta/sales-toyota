@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', $promo->judul_promo . ' – Rama Toyota Jember')
+@section('title', $promo->judul_promo . ' – Dimas Toyota Jember')
 
 @section('content')
 <div class="pt-16 lg:pt-20">

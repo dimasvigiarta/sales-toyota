@@ -27,6 +27,7 @@ class PromoController extends Controller
             'konten'           => 'required|string',
             'tanggal_berakhir' => 'nullable|date',
             'gambar_banner'    => 'nullable|image|max:3072',
+            'file_brosur'      => 'nullable|max:5120',
         ]);
 
         $validated['is_active'] = $request->has('is_active');
@@ -34,6 +35,10 @@ class PromoController extends Controller
         if ($request->hasFile('gambar_banner')) {
             $validated['gambar_banner'] = $request->file('gambar_banner')
                                                    ->store('promos', 'public');
+        }
+        if ($request->hasFile('file_brosur')) {
+            $validated['file_brosur'] = $request->file('file_brosur')
+                                                ->store('promos/brosur', 'public');
         }
 
         Promo::create($validated);
@@ -59,6 +64,7 @@ class PromoController extends Controller
             'konten'           => 'required|string',
             'tanggal_berakhir' => 'nullable|date',
             'gambar_banner'    => 'nullable|image|max:3072',
+            'file_brosur'      => 'nullable|max:5120',
         ]);
 
         $validated['is_active'] = $request->has('is_active');
@@ -68,6 +74,13 @@ class PromoController extends Controller
             $validated['gambar_banner'] = $request->file('gambar_banner')
                                                    ->store('promos', 'public');
         }
+        if ($request->hasFile('file_brosur')) {
+    if ($promo->file_brosur) {
+            Storage::disk('public')->delete($promo->file_brosur);
+        }
+        $validated['file_brosur'] = $request->file('file_brosur')
+                                            ->store('promos/brosur', 'public');
+    }
 
         $promo->update($validated);
 
@@ -77,7 +90,12 @@ class PromoController extends Controller
 
     public function destroy(Promo $promo)
     {
-        Storage::disk('public')->delete($promo->gambar_banner);
+        if ($promo->gambar_banner) {
+            Storage::disk('public')->delete($promo->gambar_banner);
+        }
+        if ($promo->file_brosur) {
+            Storage::disk('public')->delete($promo->file_brosur);
+        }
         $promo->delete();
 
         return redirect()->route('admin.promos.index')

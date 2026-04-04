@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Daftar Mobil Toyota – Rama Toyota Jember')
+@section('title', 'Daftar Mobil Toyota – Dimas Toyota Jember')
 
 @section('content')
 <div class="pt-16 lg:pt-20">

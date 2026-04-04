@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Tentang Kami – Rama Toyota Jember')
+@section('title', 'Tentang Kami – Dimas Toyota Jember')
 
 @section('content')
 <div class="pt-16 lg:pt-20 bg-slate-50">
@@ -10,7 +10,7 @@
     {{-- Background Image --}}
     <div class="absolute inset-0">
       <img src="{{ asset('images/tentangkami.png') }}" 
-           alt="Gedung Rama Toyota Jember Resmi" 
+           alt="Gedung Dimas Toyota Jember Resmi" 
            class="w-full h-full object-cover object-center" />
     </div>
 
@@ -38,7 +38,7 @@
         
         {{-- Deskripsi: Ukuran teks disesuaikan agar seimbang dengan judul --}}
         <p class="text-slate-200 text-sm md:text-base lg:text-lg leading-relaxed font-normal max-w-xl drop-shadow">
-          Rama Toyota hadir lebih dari sekadar dealer resmi. Kami adalah mitra perjalanan yang berkomitmen menghadirkan produk berkualitas, layanan purnajual prima, dan pengalaman memiliki kendaraan yang tanpa rasa khawatir.
+          Dimas Toyota hadir lebih dari sekadar dealer resmi. Kami adalah mitra perjalanan yang berkomitmen menghadirkan produk berkualitas, layanan purnajual prima, dan pengalaman memiliki kendaraan yang tanpa rasa khawatir.
         </p>
       </div>
     </div>
@@ -69,7 +69,7 @@
           {{-- Paragraf: Jarak baris lega agar mudah dibaca di HP --}}
           <div class="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
             <p class="font-medium text-slate-800">
-              Sejak tahun 2010, Rama Toyota Jember telah menjadi destinasi utama bagi keluarga dan bisnis untuk menemukan kendaraan impian mereka.
+              Sejak tahun 2010, Dimas Toyota Jember telah menjadi destinasi utama bagi keluarga dan bisnis untuk menemukan kendaraan impian mereka.
             </p>
             <p>
               Kami tidak sekadar menjual mobil, tetapi memberikan pengalaman kepemilikan yang tenang. Mulai dari pilihan MPV hingga SUV terbaru, tim profesional kami siap mendampingi perjalanan Anda dengan layanan purnajual dan bengkel resmi yang terjamin.
@@ -141,7 +141,7 @@
           </span>
         </div>
         <h2 class="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-4">
-          Keunggulan Pelayanan Rama Toyota
+          Keunggulan Pelayanan Dimas Toyota
         </h2>
         <p class="text-slate-600 text-sm md:text-base">
           Lebih dari sekadar transaksi, kami menawarkan pengalaman memiliki kendaraan yang tenang, aman, dan menguntungkan.
