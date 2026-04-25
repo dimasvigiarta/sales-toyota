@@ -3,9 +3,15 @@
 @section('title', $car->nama_mobil . ' – Dimas Toyota Jember')
 
 @php
-  $specs      = $car->spesifikasi ?? [];
-  $firstImage = $car->galleryImages->first()?->url
-                ?? asset('images/no-image.png');
+  $specs = $car->spesifikasi ?? [];
+
+  $firstImage = $car->galleryImages
+      ->whereNotNull('warna_nama')
+      ->first()?->url
+    ?? $car->galleryImages
+      ->whereNull('warna_nama')
+      ->first()?->url
+    ?? asset('images/no-image.png');
 @endphp
 
 @section('content')
@@ -99,7 +105,7 @@
           <p class="text-[8px] font-bold text-gray-400 uppercase tracking-[0.15em] mb-0.5">Mulai dari</p>
           <p class="font-black text-sm text-gray-900 tracking-tight leading-none">{{ $car->harga_format }}</p>
         </div>
-        
+
         {{-- Tombol Hitam Elegan (Tidak tabrakan dengan merah di navbar utama) --}}
         <button onclick="document.querySelector('[x-data*=fetchContacts]').__x.$data.fetchContacts()"
                 class="bg-gray-900 text-white font-bold uppercase text-[10px]
@@ -111,7 +117,7 @@
           </svg>
         </button>
       </div>
-      
+
     </div>
   </div>
 </div>
@@ -131,7 +137,7 @@
     {{-- Quick Specs Grid --}}
     @if(!empty($specs))
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
-      
+
       {{-- Kapasitas Mesin --}}
       @if(isset($specs['mesin']['kapasitas']))
       <div class="group text-center p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg hover:border-red-100 hover:-translate-y-1 transition-all duration-300">
@@ -197,19 +203,19 @@
         <h3 class="text-2xl font-black text-gray-900 tracking-tight">Fitur Unggulan</h3>
         <p class="text-gray-500 text-sm mt-2">Teknologi dan kenyamanan terbaik di kelasnya</p>
       </div>
-      
+
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         @foreach($specs['fitur'] as $fitur)
-        <div class="group bg-white flex items-center gap-4 p-5 rounded-lg border border-gray-100 shadow-sm 
+        <div class="group bg-white flex items-center gap-4 p-5 rounded-lg border border-gray-100 shadow-sm
                     hover:shadow-md hover:border-red-100 hover:-translate-y-0.5 transition-all duration-300">
-          
+
           {{-- Ikon Checkmark Merah Elegan --}}
           <div class="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center flex-shrink-0 group-hover:bg-red-600 transition-colors duration-300">
             <svg class="w-4 h-4 text-red-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
             </svg>
           </div>
-          
+
           <span class="text-sm text-gray-800 font-semibold tracking-wide">{{ $fitur }}</span>
         </div>
         @endforeach
@@ -258,7 +264,7 @@
                45deg, transparent, transparent 20px,
                #000 20px, #000 21px)">
         </div>
-        
+
         {{-- Gambar Mobil dengan Transisi --}}
         <img :src="getImage(warnaAktif)"
              :alt="warnaAktif"
@@ -283,11 +289,11 @@
                   @click="warnaAktif = warna.nama"
                   :title="warna.nama"
                   class="relative group focus:outline-none">
-            
+
             {{-- Dot Background (Lingkaran Warna) --}}
             {{-- Perbaikan: Memisahkan cincin border luar (ring) dengan warna isi (bg) --}}
             <div class="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200"
-                 :class="{ 
+                 :class="{
                     'ring-2 ring-gray-900 ring-offset-2 scale-110': warnaAktif === warna.nama,
                     'ring-1 ring-transparent hover:ring-gray-300 hover:scale-105': warnaAktif !== warna.nama
                  }">
@@ -478,7 +484,7 @@
 @if(!empty($specs))
 <section id="spesifikasi" class="bg-gray-900 py-20 border-t border-gray-800">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
+
     {{-- Section Header --}}
     <div class="text-center mb-16">
       <p class="text-red-500 text-xs font-bold uppercase tracking-[0.25em] mb-3">
@@ -496,11 +502,11 @@
         ['key' => 'interior', 'label' => 'Interior & Kapasitas'],
         ['key' => 'fitur',    'label' => 'Fitur & Teknologi'],
       ] as $section)
-      
+
       @if(isset($specs[$section['key']]))
       <div class="mb-3 bg-gray-800/50 rounded-lg border border-gray-700/50 overflow-hidden backdrop-blur-sm transition-all duration-300"
            :class="open === '{{ $section['key'] }}' ? 'border-gray-600 shadow-lg' : 'hover:border-gray-600'">
-        
+
         {{-- Header accordion --}}
         <button @click="open = open === '{{ $section['key'] }}' ? null : '{{ $section['key'] }}'"
                 class="w-full flex items-center justify-between px-6 py-5
@@ -509,7 +515,7 @@
           <span class="font-bold text-[13px] text-gray-200 uppercase tracking-widest group-hover:text-white transition-colors">
             {{ $section['label'] }}
           </span>
-          
+
           {{-- Animated Plus/Minus Icon --}}
           <div class="relative w-5 h-5 flex items-center justify-center">
              <span class="absolute w-full h-[2px] bg-gray-400 group-hover:bg-white transition-colors duration-300"></span>
@@ -524,7 +530,7 @@
              x-transition:enter="transition ease-out duration-300"
              x-transition:leave="transition ease-in duration-200"
              class="border-t border-gray-700/50 bg-gray-900/30">
-          
+
           @if($section['key'] === 'fitur' && is_array($specs['fitur']))
           <div class="px-6 py-5 grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6">
             @foreach($specs['fitur'] as $fitur)
@@ -536,7 +542,7 @@
             </div>
             @endforeach
           </div>
-          
+
           @else
           <div class="divide-y divide-gray-700/30">
             @foreach($specs[$section['key']] as $key => $val)
@@ -547,14 +553,14 @@
               <span class="font-bold text-sm text-gray-200 text-right group-hover:text-white transition-colors">{{ $val }}</span>
             </div>
             @endforeach
-            
+
             @if($section['key'] === 'mesin' && isset($specs['transmisi']))
             <div class="flex items-center justify-between px-6 py-4 group hover:bg-gray-800/30 transition-colors">
               <span class="text-[11px] text-gray-500 font-semibold uppercase tracking-[0.15em]">Transmisi</span>
               <span class="font-bold text-sm text-gray-200 text-right group-hover:text-white transition-colors">{{ $specs['transmisi'] }}</span>
             </div>
             @endif
-            
+
             @if($section['key'] === 'mesin' && isset($specs['bahan_bakar']))
             <div class="flex items-center justify-between px-6 py-4 group hover:bg-gray-800/30 transition-colors">
               <span class="text-[11px] text-gray-500 font-semibold uppercase tracking-[0.15em]">Bahan Bakar</span>
@@ -563,7 +569,7 @@
             @endif
           </div>
           @endif
-          
+
         </div>
       </div>
       @endif

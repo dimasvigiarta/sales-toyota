@@ -38,10 +38,10 @@ Route::post('/admin/logout', [LoginController::class, 'logout'])->name('logout')
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
+    Route::post('cars/store-ajax', [CarController::class, 'storeAjax'])->name('cars.store.ajax');
     Route::resource('cars', CarController::class);
     Route::post('cars/{car}/images', [CarController::class, 'uploadImages'])->name('cars.images.upload');
-    Route::post('cars/{car}/highlights/image', [CarController::class, 'uploadHighlightImage'])
-     ->name('cars.highlights.image');
+    Route::post('cars/{car}/highlights/image', [CarController::class, 'uploadHighlightImage'])->name('cars.highlights.image');
     Route::delete('cars/images/{image}', [CarController::class, 'deleteImage'])->name('cars.images.delete');
 
     Route::resource('promos', PromoController::class);

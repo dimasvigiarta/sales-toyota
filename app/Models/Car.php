@@ -48,7 +48,7 @@ class Car extends Model
                     ->where('tipe_gambar', '360_degree')
                     ->orderBy('urutan');
     }
-    
+
     public function imagesByWarna(string $warna): HasMany
     {
         return $this->hasMany(CarImage::class)
@@ -65,14 +65,29 @@ class Car extends Model
                     ->orderBy('urutan');
     }
 
-   public function getThumbnailAttribute(): string
+    public function getThumbnailAttribute(): string
     {
-        $first = $this->galleryImages()->first();
-        if ($first) {
-            return asset('storage/' . $first->path_gambar);
+        // Prioritas 1: foto per warna
+        $warnaPhoto = $this->galleryImages()
+            ->whereNotNull('warna_nama')
+            ->orderBy('urutan')
+            ->first();
+
+        if ($warnaPhoto) {
+            return asset('storage/' . $warnaPhoto->path_gambar);
         }
 
-        // Placeholder SVG via UI Avatars dengan nama mobil
+        // Prioritas 2: foto umum (warna_nama null)
+        $umumPhoto = $this->galleryImages()
+            ->whereNull('warna_nama')
+            ->orderBy('urutan')
+            ->first();
+
+        if ($umumPhoto) {
+            return asset('storage/' . $umumPhoto->path_gambar);
+        }
+
+        // Placeholder
         $nama = urlencode($this->nama_mobil);
         return "https://placehold.co/800x500/1a1a1a/eb0a1e?text={$nama}&font=raleway";
     }

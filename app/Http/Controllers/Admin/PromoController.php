@@ -33,12 +33,9 @@ class PromoController extends Controller
         $validated['is_active'] = $request->has('is_active');
 
         if ($request->hasFile('gambar_banner')) {
-            $validated['gambar_banner'] = $request->file('gambar_banner')
-                                                   ->store('promos', 'public');
-        }
-        if ($request->hasFile('file_brosur')) {
-            $validated['file_brosur'] = $request->file('file_brosur')
-                                                ->store('promos/brosur', 'public');
+            $path = $request->file('gambar_banner')->store('promos', 'public');
+            $validated['gambar_banner'] = $path;
+            $validated['file_brosur']   = $path;
         }
 
         Promo::create($validated);
@@ -70,17 +67,13 @@ class PromoController extends Controller
         $validated['is_active'] = $request->has('is_active');
 
         if ($request->hasFile('gambar_banner')) {
-            Storage::disk('public')->delete($promo->gambar_banner);
-            $validated['gambar_banner'] = $request->file('gambar_banner')
-                                                   ->store('promos', 'public');
+            if ($promo->gambar_banner) {
+                Storage::disk('public')->delete($promo->gambar_banner);
+            }
+            $path = $request->file('gambar_banner')->store('promos', 'public');
+            $validated['gambar_banner'] = $path;
+            $validated['file_brosur']   = $path;
         }
-        if ($request->hasFile('file_brosur')) {
-    if ($promo->file_brosur) {
-            Storage::disk('public')->delete($promo->file_brosur);
-        }
-        $validated['file_brosur'] = $request->file('file_brosur')
-                                            ->store('promos/brosur', 'public');
-    }
 
         $promo->update($validated);
 

@@ -81,6 +81,49 @@ class CarController extends Controller
                          ->with('success', 'Mobil berhasil ditambahkan!');
     }
 
+    public function storeAjax(Request $request)
+    {
+        $validated = $request->validate([
+            'nama_mobil'  => 'required|string|max:255',
+            'kategori'    => 'required|in:SUV,MPV,Hatchback,Sedan,Pickup,Sport',
+            'harga_mulai' => 'required|integer|min:0',
+            'deskripsi'   => 'nullable|string',
+        ]);
+
+        $validated['is_featured'] = $request->boolean('is_featured');
+        $validated['is_active']   = $request->boolean('is_active');
+
+        if ($request->filled('spek')) {
+            $spek = $request->input('spek');
+            $validated['spesifikasi'] = array_filter([
+                'mesin'       => array_filter($spek['mesin'] ?? []),
+                'transmisi'   => $spek['transmisi'] ?? null,
+                'bahan_bakar' => $spek['bahan_bakar'] ?? null,
+                'dimensi'     => array_filter($spek['dimensi'] ?? []),
+                'interior'    => array_filter($spek['interior'] ?? []),
+                'fitur'       => $spek['fitur'] ?? [],
+            ]);
+        }
+
+        if ($request->filled('warna')) {
+                $warnas = collect($request->input('warna'))
+                ->filter(fn($w) => !empty($w['nama']))
+                ->values()
+                ->toArray();
+            $validated['warna_tersedia'] = $warnas;
+        }
+
+        $validated['slug'] = Str::slug($validated['nama_mobil']);
+
+        $car = Car::create($validated);
+
+        return response()->json([
+            'success' => true,
+            'car_id'  => $car->id,
+            'message' => 'Mobil berhasil disimpan! Sekarang upload foto.',
+        ]);
+    }
+
     public function show(Car $car)
     {
         return redirect()->route('admin.cars.edit', $car);

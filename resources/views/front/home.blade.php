@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 {{-- Judul yang lebih disukai Google (memasukkan kata Promo & Tahun) --}}
-@section('title', 'Promo Toyota Jember & Harga OTR Terbaru 2026 | Dimas Toyota')
+@section('title', 'Promo Toyota Jember & Harga OTR Terbaru 2026 | Toyota Jember')
 
 {{-- Tambahkan baris ini untuk mendeskripsikan isi beranda di hasil pencarian Google --}}
 @section('meta_desc', 'Dapatkan promo diskon DP ringan, cicilan mudah, dan harga OTR termurah untuk Avanza, Veloz, Raize di Jember. Hubungi dealer resmi Dimas Toyota sekarang!')
